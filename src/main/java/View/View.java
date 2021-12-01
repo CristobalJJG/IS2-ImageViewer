@@ -6,17 +6,23 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.UIManager;
 
 public class View extends javax.swing.JFrame implements MouseListener{
 
     private final Controller controller;
         
-    public View(Controller c) {
+    public View(Controller c, String theme) {
         this.controller = c;
+        try {
+            UIManager.setLookAndFeel(theme);
+        } catch (Exception e) {
+            e.getMessage();
+        }
         initComponents();
         initActionListeners();
         this.setVisible(true);
-        this.setResizable(false);
+        this.setResizable(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -24,15 +30,15 @@ public class View extends javax.swing.JFrame implements MouseListener{
     private void initComponents() {
 
         paneBackground = new javax.swing.JPanel();
-        paneDirectory = new javax.swing.JPanel();
+        paneDirectoryName = new javax.swing.JPanel();
         lblDirectoryName = new javax.swing.JLabel();
         paneImage = new javax.swing.JPanel();
         lblIconImage = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         paneButtons = new javax.swing.JPanel();
-        btnRight = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         btnLeft = new javax.swing.JButton();
         lblFileName = new javax.swing.JLabel();
+        btnRight = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menuItemFile = new javax.swing.JMenu();
         menuItemEdit = new javax.swing.JMenu();
@@ -42,24 +48,26 @@ public class View extends javax.swing.JFrame implements MouseListener{
         setLocation(new java.awt.Point(1920, 0));
 
         lblDirectoryName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDirectoryName.setText("C:/Cosa/Directorio");
+        lblDirectoryName.setText("F:/Cosas/DirectorioConFotos");
 
-        javax.swing.GroupLayout paneDirectoryLayout = new javax.swing.GroupLayout(paneDirectory);
-        paneDirectory.setLayout(paneDirectoryLayout);
-        paneDirectoryLayout.setHorizontalGroup(
-            paneDirectoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneDirectoryLayout.createSequentialGroup()
-                .addComponent(lblDirectoryName, javax.swing.GroupLayout.PREFERRED_SIZE, 1057, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        javax.swing.GroupLayout paneDirectoryNameLayout = new javax.swing.GroupLayout(paneDirectoryName);
+        paneDirectoryName.setLayout(paneDirectoryNameLayout);
+        paneDirectoryNameLayout.setHorizontalGroup(
+            paneDirectoryNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblDirectoryName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        paneDirectoryLayout.setVerticalGroup(
-            paneDirectoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneDirectoryLayout.createSequentialGroup()
-                .addComponent(lblDirectoryName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+        paneDirectoryNameLayout.setVerticalGroup(
+            paneDirectoryNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneDirectoryNameLayout.createSequentialGroup()
+                .addComponent(lblDirectoryName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
+
+        paneImage.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        paneImage.setVerifyInputWhenFocusTarget(false);
 
         lblIconImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconImage.setText("Imagen");
 
         javax.swing.GroupLayout paneImageLayout = new javax.swing.GroupLayout(paneImage);
         paneImage.setLayout(paneImageLayout);
@@ -70,61 +78,60 @@ public class View extends javax.swing.JFrame implements MouseListener{
         paneImageLayout.setVerticalGroup(
             paneImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneImageLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblIconImage, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblIconImage, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+
+        btnLeft.setText("<<");
+
+        lblFileName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFileName.setText("FileName");
+
+        btnRight.setText(">>");
+
+        javax.swing.GroupLayout paneButtonsLayout = new javax.swing.GroupLayout(paneButtons);
+        paneButtons.setLayout(paneButtonsLayout);
+        paneButtonsLayout.setHorizontalGroup(
+            paneButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneButtonsLayout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(btnLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblFileName, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnRight, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        paneButtonsLayout.setVerticalGroup(
+            paneButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneButtonsLayout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(paneButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRight, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFileName))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout paneBackgroundLayout = new javax.swing.GroupLayout(paneBackground);
         paneBackground.setLayout(paneBackgroundLayout);
         paneBackgroundLayout.setHorizontalGroup(
             paneBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(paneDirectory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(paneDirectoryName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(paneImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(paneBackgroundLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1)
-                .addContainerGap())
+            .addComponent(paneButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         paneBackgroundLayout.setVerticalGroup(
             paneBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneBackgroundLayout.createSequentialGroup()
-                .addComponent(paneDirectory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(paneImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        btnRight.setText(">>");
-
-        btnLeft.setText("<<");
-
-        lblFileName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFileName.setText("ImageName");
-
-        javax.swing.GroupLayout paneButtonsLayout = new javax.swing.GroupLayout(paneButtons);
-        paneButtons.setLayout(paneButtonsLayout);
-        paneButtonsLayout.setHorizontalGroup(
-            paneButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneButtonsLayout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(btnLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(paneDirectoryName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblFileName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(paneImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(btnRight, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132))
-        );
-        paneButtonsLayout.setVerticalGroup(
-            paneButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneButtonsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(paneButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRight, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFileName))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(paneButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         menuItemFile.setText("File");
@@ -139,17 +146,11 @@ public class View extends javax.swing.JFrame implements MouseListener{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(paneBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(paneButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(paneBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(paneBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(paneButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(paneBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -163,6 +164,7 @@ public class View extends javax.swing.JFrame implements MouseListener{
     }
     
     public void updateImage(String image){
+        lblIconImage.setText("");
         ImageIcon imagen = new ImageIcon(image);
         Icon ico = new ImageIcon(imagen.getImage()
                 .getScaledInstance(
@@ -170,7 +172,7 @@ public class View extends javax.swing.JFrame implements MouseListener{
                         lblIconImage.getHeight(), 
                         Image.SCALE_DEFAULT));
         lblIconImage.setIcon(ico);
-        lblIconImage.repaint();
+        this.repaint();
     }
     
     public void updateDirName(String name){
@@ -193,7 +195,7 @@ public class View extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JMenu menuItemFile;
     private javax.swing.JPanel paneBackground;
     private javax.swing.JPanel paneButtons;
-    private javax.swing.JPanel paneDirectory;
+    private javax.swing.JPanel paneDirectoryName;
     private javax.swing.JPanel paneImage;
     // End of variables declaration//GEN-END:variables
 
@@ -212,6 +214,7 @@ public class View extends javax.swing.JFrame implements MouseListener{
             System.out.println("Pressed file");
             
         }else if(e.getSource().equals(menuItemEdit)){
+            
             System.out.println("Pressed edit");
         }
     }

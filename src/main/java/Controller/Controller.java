@@ -5,16 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import View.View;
+import View.Themes.Themes;
 
 public class Controller {
 
     private final View view;
-    // private final String theme
+    private final String theme = Themes.iJAtomDark();
     
     public Controller(){
         String url = "C:\\Users\\crist\\OneDrive\\Imágenes";
         setDirectory(new File(url));
-        view = new View(this);
+        view = new View(this, theme);
         setDirName(url);
     }
 
