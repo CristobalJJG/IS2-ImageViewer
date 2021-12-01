@@ -4,25 +4,28 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import View.View;
+import View.*;
 import View.Themes.Themes;
 
 public class Controller {
 
     private final View view;
+    private FileChooser fc;
     private final String theme = Themes.iJAtomDark();
+    private File directory;
     
     public Controller(){
-        String url = "C:\\Users\\crist\\OneDrive\\Imágenes";
-        setDirectory(new File(url));
+        //String url = "C:\\Users\\crist\\OneDrive\\Imágenes";
+        //setDirectory(new File(url));
+        fc = new FileChooser(this, theme);
         view = new View(this, theme);
-        setDirName(url);
+        setDirName(directory.getAbsolutePath());
     }
 
     private List<File> imageFiles;
     private int imageIndex = 0;
 
-    public void setDirectory(File directory){        
+    public void setDirectory(){        
         List<File> aux = new ArrayList<>();
 
         for (File file : Objects.requireNonNull(directory.listFiles())) {
@@ -31,13 +34,21 @@ public class Controller {
                 aux.add(file);
             }
         }
-
         imageFiles = new ArrayList<>(aux);
-        imageIndex = aux.size()-1;
+    }
+    
+    public void setDirectory(File dir){
+        directory = dir;
+        setDirectory();
+    }
+    
+    public void newDirectory(){
+        fc = new FileChooser(this, theme);
     }
     
     private void setDirName(String directory){
         view.updateDirName(directory);
+        view.updateImage(imageFiles.get(0).getAbsolutePath());
     }
     
     public void prevImage() {

@@ -210,7 +210,7 @@ public class View extends javax.swing.JFrame implements MouseListener{
             System.out.println("Pressed rigth");
             
         }else if(e.getSource().equals(menuItemFile)){
-            
+            controller.newDirectory();
             System.out.println("Pressed file");
             
         }else if(e.getSource().equals(menuItemEdit)){
