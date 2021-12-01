@@ -9,17 +9,17 @@ import View.Themes.Themes;
 
 public class Controller {
 
-    private final View view;
-    private FileChooser fc;
-    private final String theme = Themes.iJAtomDark();
+    private View view;
+    private String theme;
     private File directory;
     
     public Controller(){
-        //String url = "C:\\Users\\crist\\OneDrive\\Imágenes";
-        //setDirectory(new File(url));
-        fc = new FileChooser(this, theme);
+        theme = Themes.iJAtomDark();
+        new FileChooser(this, theme);
         view = new View(this, theme);
-        setDirName(directory.getAbsolutePath());
+        if(directory != null){
+            setDirName(directory.getAbsolutePath());
+        }
     }
 
     private List<File> imageFiles;
@@ -43,7 +43,8 @@ public class Controller {
     }
     
     public void newDirectory(){
-        fc = new FileChooser(this, theme);
+        new FileChooser(this, theme);
+        view.updateImage(imageFiles.get(0).getAbsolutePath());
     }
     
     private void setDirName(String directory){
@@ -63,5 +64,11 @@ public class Controller {
         if(imageIndex > imageFiles.size()-1){imageIndex = 0;}
         view.updateImage(imageFiles.get(imageIndex).getAbsolutePath());
         view.updateFileName(imageFiles.get(imageIndex).getName());
+    }
+    
+    public void changeTheme(String theme){
+        this.theme = theme;
+        view = new View(this, theme);
+        setDirName(directory.getAbsolutePath());
     }
 }

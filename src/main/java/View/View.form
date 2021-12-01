@@ -6,13 +6,40 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="menuItemFile">
           <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="text" type="java.lang.String" value="Choose New File"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuItemEdit">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
+            <Property name="text" type="java.lang.String" value="Change Theme"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mnThemeFlatLight">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Flat Ligth"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnThemeFlatDark">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Flat Dark"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnThemeFlatIntelliJ">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Flat IntelliJ"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnThemeFlatDarcula">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Flat Darcula"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnThemeIJAtomDark">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="IJ Atom Dark"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>

@@ -1,14 +1,17 @@
 package View;
 
 import Controller.Controller;
+import View.Themes.Themes;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
-public class View extends javax.swing.JFrame implements MouseListener{
+public class View extends javax.swing.JFrame implements MouseListener, ActionListener{
 
     private final Controller controller;
         
@@ -20,7 +23,7 @@ public class View extends javax.swing.JFrame implements MouseListener{
             e.getMessage();
         }
         initComponents();
-        initActionListeners();
+        initListeners();
         this.setVisible(true);
         this.setResizable(true);
     }
@@ -42,6 +45,11 @@ public class View extends javax.swing.JFrame implements MouseListener{
         menuBar = new javax.swing.JMenuBar();
         menuItemFile = new javax.swing.JMenu();
         menuItemEdit = new javax.swing.JMenu();
+        mnThemeFlatLight = new javax.swing.JMenuItem();
+        mnThemeFlatDark = new javax.swing.JMenuItem();
+        mnThemeFlatIntelliJ = new javax.swing.JMenuItem();
+        mnThemeFlatDarcula = new javax.swing.JMenuItem();
+        mnThemeIJAtomDark = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ImageViewer");
@@ -134,10 +142,26 @@ public class View extends javax.swing.JFrame implements MouseListener{
                 .addComponent(paneButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        menuItemFile.setText("File");
+        menuItemFile.setText("Choose New File");
         menuBar.add(menuItemFile);
 
-        menuItemEdit.setText("Edit");
+        menuItemEdit.setText("Change Theme");
+
+        mnThemeFlatLight.setText("Flat Ligth");
+        menuItemEdit.add(mnThemeFlatLight);
+
+        mnThemeFlatDark.setText("Flat Dark");
+        menuItemEdit.add(mnThemeFlatDark);
+
+        mnThemeFlatIntelliJ.setText("Flat IntelliJ");
+        menuItemEdit.add(mnThemeFlatIntelliJ);
+
+        mnThemeFlatDarcula.setText("Flat Darcula");
+        menuItemEdit.add(mnThemeFlatDarcula);
+
+        mnThemeIJAtomDark.setText("IJ Atom Dark");
+        menuItemEdit.add(mnThemeIJAtomDark);
+
         menuBar.add(menuItemEdit);
 
         setJMenuBar(menuBar);
@@ -156,11 +180,16 @@ public class View extends javax.swing.JFrame implements MouseListener{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void initActionListeners() {
+    private void initListeners() {
         btnLeft.addMouseListener(this);
         btnRight.addMouseListener(this);
         menuItemEdit.addMouseListener(this);
         menuItemFile.addMouseListener(this);
+        mnThemeFlatLight.addActionListener(this);
+        mnThemeFlatDark.addActionListener(this);
+        mnThemeFlatIntelliJ.addActionListener(this);
+        mnThemeFlatDarcula.addActionListener(this);
+        mnThemeIJAtomDark.addActionListener(this);
     }
     
     public void updateImage(String image){
@@ -193,6 +222,11 @@ public class View extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuItemEdit;
     private javax.swing.JMenu menuItemFile;
+    private javax.swing.JMenuItem mnThemeFlatDarcula;
+    private javax.swing.JMenuItem mnThemeFlatDark;
+    private javax.swing.JMenuItem mnThemeFlatIntelliJ;
+    private javax.swing.JMenuItem mnThemeFlatLight;
+    private javax.swing.JMenuItem mnThemeIJAtomDark;
     private javax.swing.JPanel paneBackground;
     private javax.swing.JPanel paneButtons;
     private javax.swing.JPanel paneDirectoryName;
@@ -214,10 +248,45 @@ public class View extends javax.swing.JFrame implements MouseListener{
             System.out.println("Pressed file");
             
         }else if(e.getSource().equals(menuItemEdit)){
-            
             System.out.println("Pressed edit");
         }
     }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource().equals(mnThemeFlatLight)){
+            this.setVisible(false);
+            this.dispose();
+            controller.changeTheme(Themes.flatLight());
+            System.out.println("Cosa ligth");
+            
+        }else if(e.getSource().equals(mnThemeFlatDark)){
+            this.setVisible(false);
+            this.dispose();
+            controller.changeTheme(Themes.flatDark());
+            System.out.println("Cosa dark");
+            
+        }else if(e.getSource().equals(mnThemeFlatIntelliJ)){
+            this.setVisible(false);
+            this.dispose();
+            controller.changeTheme(Themes.flatIntelliJ());
+            System.out.println("Cosa intllij");
+            
+        }else if(e.getSource().equals(mnThemeFlatDarcula)){
+            this.setVisible(false);
+            this.dispose();
+            controller.changeTheme(Themes.flatDarcula());
+            System.out.println("Cosa darcula");
+            
+        }else if(e.getSource().equals(mnThemeIJAtomDark)){
+            this.setVisible(false);
+            this.dispose();
+            controller.changeTheme(Themes.iJAtomDark());
+            System.out.println("Cosa atomdark");
+            
+        }
+    }
+    
     @Override
     public void mousePressed(MouseEvent e) {}
     @Override
@@ -226,6 +295,4 @@ public class View extends javax.swing.JFrame implements MouseListener{
     public void mouseEntered(MouseEvent e) {}
     @Override
     public void mouseExited(MouseEvent e) {}
-    
-    
 }
