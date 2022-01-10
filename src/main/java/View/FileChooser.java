@@ -2,13 +2,15 @@ package View;
 
 import Controller.Controller;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class FileChooser extends javax.swing.JFrame {  
     
     public FileChooser(Controller c, String theme) {
         try {
             UIManager.setLookAndFeel(theme);
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | IllegalAccessException | 
+                InstantiationException | UnsupportedLookAndFeelException e) {
             e.getMessage();
         }
         setLocation(1920, 0);
